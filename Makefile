@@ -1,7 +1,7 @@
 .PHONY: .test
 .test:
 	$(info Running tests...)
-	go test ./...
+	go test ./sprint-2/...
 
 .PHONY: test
 test: .test ## run unit tests
