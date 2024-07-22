@@ -36,8 +36,6 @@ func GetType(testValue interface{}) string {
 		resultType = "slice"
 	case []byte:
 		resultType = "slice"
-	// case interface{}:
-	// 	resultType = "interface {}"
 	default:
 		resultType = "NA"
 	}
@@ -79,6 +77,7 @@ func createErrorText(data []interface{}) string {
 func AssertEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) bool {
 	result := compare(expected, actual)
 	if !result {
+		t.Helper()
 		t.Errorf(createErrorText(msgAndArgs))
 	}
 	return result
@@ -93,6 +92,7 @@ func AssertEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) b
 func AssertNotEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) bool {
 	result := compare(expected, actual)
 	if result {
+		t.Helper()
 		t.Errorf(createErrorText(msgAndArgs))
 	}
 	return !result
@@ -103,6 +103,7 @@ func AssertNotEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}
 func RequireEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) {
 	result := compare(expected, actual)
 	if !result {
+		t.Helper()
 		t.Errorf(createErrorText(msgAndArgs))
 		t.FailNow()
 	}
@@ -113,6 +114,7 @@ func RequireEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) 
 func RequireNotEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) {
 	result := compare(expected, actual)
 	if result {
+		t.Helper()
 		t.Errorf(createErrorText(msgAndArgs))
 		t.FailNow()
 	}
