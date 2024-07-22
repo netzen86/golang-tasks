@@ -79,7 +79,6 @@ func createErrorText(data []interface{}) string {
 func AssertEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) bool {
 	result := compare(expected, actual)
 	if !result {
-		fmt.Println(createErrorText(msgAndArgs))
 		t.Errorf(createErrorText(msgAndArgs))
 	}
 	return result
