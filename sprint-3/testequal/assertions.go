@@ -7,39 +7,53 @@ import (
 	"reflect"
 )
 
+const (
+	i    string = "int"
+	i8   string = "int8"
+	i16  string = "int16"
+	i32  string = "int32"
+	i64  string = "int64"
+	ui8  string = "uint8"
+	ui16 string = "uint16"
+	ui32 string = "uint32"
+	ui64 string = "uint64"
+	s    string = "string"
+	ma   string = "map"
+	sl   string = "slice"
+	df   string = "NA"
+)
+
 func GetType(testValue interface{}) string {
-	var resultType string
 	switch testValue.(type) {
 	case int:
-		resultType = "int"
+		return i
 	case int8:
-		resultType = "int8"
+		return i8
 	case int16:
-		resultType = "int16"
+		return i16
 	case int32:
-		resultType = "int32"
+		return i32
 	case int64:
-		resultType = "int64"
+		return i64
 	case uint8:
-		resultType = "uint8"
+		return ui8
 	case uint16:
-		resultType = "uint16"
+		return ui16
 	case uint32:
-		resultType = "uint32"
+		return ui32
 	case uint64:
-		resultType = "uint64"
+		return ui64
 	case string:
-		resultType = "string"
+		return s
 	case map[string]string:
-		resultType = "map"
+		return ma
 	case []int:
-		resultType = "slice"
+		return sl
 	case []byte:
-		resultType = "slice"
+		return sl
 	default:
-		resultType = "NA"
+		return df
 	}
-	return resultType
 }
 
 func compare(expected, actual interface{}) bool {
@@ -57,14 +71,13 @@ func compare(expected, actual interface{}) bool {
 }
 
 func createErrorText(data []interface{}) string {
-	result := ""
 	if len(data) == 3 {
-		result = fmt.Sprintf(data[0].(string), data[1].(int), data[2].(int))
+		return fmt.Sprintf(data[0].(string), data[1].(int), data[2].(int))
 	}
 	if len(data) == 1 {
-		result = data[0].(string)
+		return data[0].(string)
 	}
-	return result
+	return ""
 }
 
 // AssertEqual checks that expected and actual are equal.
