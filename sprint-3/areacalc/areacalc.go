@@ -1,5 +1,7 @@
 package areacalc
 
+import "fmt"
+
 const pi = 3.14159
 
 type Shape interface {
@@ -59,7 +61,7 @@ func AreaCalculator(figures []Shape) (string, float64) {
 			listOfShapes = figure.Type()
 			continue
 		}
-		listOfShapes = listOfShapes + "-" + figure.Type()
+		listOfShapes = fmt.Sprintf("%s-%s", listOfShapes, figure.Type())
 	}
 	return listOfShapes, commonArea
 }
