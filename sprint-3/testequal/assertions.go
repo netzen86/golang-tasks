@@ -44,18 +44,16 @@ func GetType(testValue interface{}) string {
 
 func compare(expected, actual interface{}) bool {
 	et, ea := GetType(expected), GetType(actual)
-	result := false
 	switch {
 	case et == "map" && ea == "map" || et == "slice" && ea == "slice":
-		result = reflect.DeepEqual(expected, actual)
+		return reflect.DeepEqual(expected, actual)
 	case et != ea:
-		result = false
+		return false
 	case et == "NA" || ea == "NA":
-		result = false
+		return false
 	default:
-		result = expected == actual
+		return expected == actual
 	}
-	return result
 }
 
 func createErrorText(data []interface{}) string {
