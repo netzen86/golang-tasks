@@ -59,7 +59,7 @@ func GetType(testValue interface{}) string {
 func compare(expected, actual interface{}) bool {
 	et, ea := GetType(expected), GetType(actual)
 	switch {
-	case et == "map" && ea == "map" || et == "slice" && ea == "slice":
+	case et == ma && ea == ma || et == sl && ea == sl:
 		return reflect.DeepEqual(expected, actual)
 	case et != ea:
 		return false
